@@ -5,9 +5,11 @@ http://httpd.apache.org/docs/2.2/rewrite/
 http://httpd.apache.org/docs/2.4/rewrite/flags.html
 
 ##The important flags:
-R: redirect(if the target url is relative path, the server will automaticly add the orginal host and port to new urls).
+R: redirect(if the target url is relative path, the server will automaticly add the orginal host and port to new urls), default redirect status is 302(temporary move to an new location, 301 means permanent move to an new location).
 L: if current rules matches, no further rules will be processed.
 usually R,L used together.
+
+RewriteCond always use with RewriteRule together, one RewriteRule can match one or many condations, append with [OR] or just append line by line.
 
 ##VirtualHost:
 if there are not only one web applications in the server, the RewriteRule should be configure exactlly within the virtualhost
