@@ -11,6 +11,9 @@ usually R,L used together.
 
 RewriteCond always use with RewriteRule together, one RewriteRule can match one or many condations, append with [OR] or just append line by line.
 
+##build-in variables:
+http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html
+
 ##VirtualHost:
 if there are not only one web applications in the server, the RewriteRule should be configure exactlly within the virtualhost
 you wanna configure, otherwise, just simply paste the rules at the end of the httpd.conf will be ok.
