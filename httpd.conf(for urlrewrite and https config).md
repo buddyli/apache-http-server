@@ -18,6 +18,28 @@ http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html
 if there are not only one web applications in the server, the RewriteRule should be configure exactlly within the virtualhost
 you wanna configure, otherwise, just simply paste the rules at the end of the httpd.conf will be ok.
 
+##Redirect rules for global scope
+When we want to add rules for all of the hosts, we do not have to add the same rules to each of the VirtualHost, just paste redirect rules at the end of the httpd.conf, and in each VirtualHost, specify to inherit the global rules is ok.
+
+e.g:
+-- global redirect rules
+RewriteEngine On
+RewriteRule /buy/?$     /new/buy/product/us/en-us [R,L]
+
+-- in each VirtualHost, we have to config
+<VirtualHost localhost:80>
+	RewriteEngine On
+	RewriteOptions Inherit 
+</VirtualHost>
+
+<VirtualHost localhost:443>
+	SSLEnable
+	RewriteEngine On
+	RewriteOptions Inherit 
+</VirtualHost>
+
+then the redirect rule will work on both HTTP and HTTPS hosts.
+
 #=====Enable https======
 ##Reference:
 For apache: http://httpd.apache.org/docs/2.4/ssl/
